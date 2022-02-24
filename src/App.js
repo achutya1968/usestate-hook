@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
+import './App.css';
+import {useState} from "react"
+export default function App() {
+  const [inputs, setInputs] = useState([]);
+  const addItem = () => {
+    setInputs([
+      ...inputs,
+      {
+        id: inputs.length,
+        value: Math.floor(Math.random() * 20) + 1,
+      },
+    ]);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h3>Simple useState hook</h3>
+      <button onClick={addItem}>Add a number</button>
+      {inputs.map((input) => (
+        <li key={input.id}>{input.value}</li>
+      ))}
     </div>
   );
 }
-
-export default App;
